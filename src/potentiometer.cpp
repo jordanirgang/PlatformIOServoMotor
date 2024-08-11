@@ -1,10 +1,17 @@
 #include "potentiometer.h"
 
-Generic::Potentiometer::Potentiometer(const int &gnd,const int &vcc, const int &data)
+Generic::Potentiometer::Potentiometer(const int &data)
+{
+    this->data = {data,0};
+    this->cfgIs3pin=false;
+}
+
+Generic::Potentiometer::Potentiometer(const int &gnd, const int &vcc, const int &data)
 {
     this->gnd ={gnd,false};
     this->vcc = {vcc,true};
     this->data = {data,0};
+    
 }
 
 Generic::Potentiometer::~Potentiometer()

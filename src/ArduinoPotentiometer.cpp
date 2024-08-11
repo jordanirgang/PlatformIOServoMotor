@@ -1,11 +1,12 @@
 #include "ArdunioPotentiometer.h"
-#include "Arduino.h"
 
 
-
-void CustomArduino::Potentiometer::UpdateData()
+void CustomArduino::Potentiometer::Update()
 {
     this->Generic::Potentiometer::UpdateData(analogRead(this->data.pin));
+    if(this->debug){
+        Serial.println(analogRead(this->data.pin));
+    }
 }
 
 void CustomArduino::Potentiometer::SetUp()
