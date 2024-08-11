@@ -1,0 +1,32 @@
+#include "ArduinoL289n.h"
+
+void CustomArduino::L289n::Update()
+{
+    if(this->debug){
+        Serial.print("writing pwm dignal at");
+        Serial.println(this->pwmControll.value);
+    }
+}
+
+void CustomArduino::L289n::SetUp()
+{
+    pinMode(this->in1.pin,OUTPUT);
+    pinMode(this->in2.pin,OUTPUT);
+    pinMode(this->pwmControll.pin,INPUT);
+
+    //digitalWrite(this->in.pin,this->gnd.value);
+    //digitalWrite(this->vcc.pin,this->vcc.value);
+}
+
+void CustomArduino::L289n::SetDir(const bool &direction)
+{
+    Generic::L298n::SetDir(direction);
+    digitalWrite(this->in1.pin,this->in1.value);
+    digitalWrite(this->in2.pin,this->in2.value);
+}
+
+void CustomArduino::L289n::SetSpeed(const int &dutyCyclePerc)
+{
+    Generic::L298n::SetSpeed(dutyCyclePerc);
+    analogWrite(this->pwmControll.pin, this->pwmControll.value);
+}
