@@ -16,7 +16,7 @@ const int motor3(3);
 
 
 Potentiometer potBoi(pot1,pot2,pot3);
-L289n motorDriver(motor1,motor2,motor3,255,0);
+L289n motorDriver(motor1,motor2,motor3,0,255);
 //0 is ground
 //1 is power
 //2 is data

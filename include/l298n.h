@@ -16,7 +16,7 @@ protected:
    
 public:
     L298n(const int &in1, const int &in2, const int &pwm);
-    L298n(const int &in1, const int &in2, const int &pwm, const int &maxSpeed, const int &minSpeed);
+    L298n(const int &in1, const int &in2, const int &pwm, const int &minSpeed, const int &maxSpeed);
 
     ~L298n();
 
