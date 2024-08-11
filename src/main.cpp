@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "ArdunioPotentiometer.h"
+#include "ArduinoPotentiometer.h"
 #include "ArduinoL289n.h"
 using namespace CustomArduino;
 

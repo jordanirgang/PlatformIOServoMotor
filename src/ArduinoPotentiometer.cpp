@@ -1,4 +1,4 @@
-#include "ArdunioPotentiometer.h"
+#include "ArduinoPotentiometer.h"
 
 
 void CustomArduino::Potentiometer::Update()
