@@ -1,17 +1,18 @@
 #include <Arduino.h>
 #include "ArduinoPotentiometer.h"
 #include "ArduinoL289n.h"
+
 using namespace CustomArduino;
 
 const int pinLED(LED_BUILTIN);
 
-const int pot1(7);
-const int pot2(8);
-const int pot3(9);
+const int pot1(2);
+const int pot2(2);
+const int pot3(1);
 
-const int motor1(1);
-const int motor2(2);
-const int motor3(3);
+const int motor1(7);
+const int motor2(8);
+const int motor3(9);
 
 
 
@@ -36,6 +37,16 @@ void loop() {
   potBoi.Update();
   delay(125);
   motorDriver.DriveFWD(80);
+  delay(1000);
+  motorDriver.Brake();
+  delay(1000);
+
+  motorDriver.DriveBwd(80);
+  delay(1000);
+
+  motorDriver.Brake();
+  delay(1000);
+
 
   //TODO:Add motor driver write
 }
