@@ -31,6 +31,7 @@ void Generic::L298n::SetDir(const bool& direction)
 
 void Generic::L298n::SetSpeed(const int &dutyCyclePerc)
 {
+
     if (this->minSpeed == 0 && this->maxSpeed == 100){
         this->speed = dutyCyclePerc;
     }else{
@@ -46,23 +47,23 @@ void Generic::L298n::SetSpeed(const int &dutyCyclePerc)
 
 void Generic::L298n::DriveFWD()
 {
-    this->SetDir(true);
+    this->SetDir(CLOCKWISE);
 }
 
-void Generic::L298n::DriveBwd()
+void Generic::L298n::DriveBWD()
 {
-    this->SetDir(false);
+    this->SetDir(COUNTERCLOCKWISE);
 }
 
 void Generic::L298n::DriveFWD(const int &speed)
 {
-    this->SetDir(true);
+    this->SetDir(CLOCKWISE);
     this->SetSpeed(speed);
 }
 
-void Generic::L298n::DriveBwd(const int &speed)
+void Generic::L298n::DriveBWD(const int &speed)
 {
-    this->SetDir(true);
+    this->SetDir(COUNTERCLOCKWISE);
     this->SetSpeed(speed);
 }
 
@@ -72,4 +73,19 @@ void Generic::L298n::Brake()
     this->in2.value = false;
     
     this->SetSpeed(this->minSpeed);
+}
+
+bool Generic::L298n::getStatusIN1()
+{
+    return this->in1.value;
+}
+
+bool Generic::L298n::getStatusIN2()
+{
+    return this->in2.value;
+}
+
+int Generic::L298n::getDutyCycle()
+{
+    return this->speed;
 }

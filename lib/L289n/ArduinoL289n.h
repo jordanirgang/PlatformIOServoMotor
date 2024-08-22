@@ -12,6 +12,8 @@ namespace CustomArduino{
         void SetUp()override;
         void SetDir(const bool& direction);
         void SetSpeed(const int& speed);
+        int GetIN1PinState();
+        int GetIN2PinState();
 
     };
 

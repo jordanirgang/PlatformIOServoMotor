@@ -1,5 +1,10 @@
 #pragma once
 #include "pingroup.h"
+
+#define CLOCKWISE true
+#define COUNTERCLOCKWISE false
+
+
 namespace Generic{
 
 class L298n
@@ -20,13 +25,17 @@ public:
 
     ~L298n();
 
-    void SetDir(const bool& direction);
-    void SetSpeed(const int& dutyCyclePerc);
+    virtual void SetDir(const bool& direction);
+    virtual void SetSpeed(const int& dutyCyclePerc);
     void DriveFWD();
-    void DriveBwd();
+    void DriveBWD();
     void DriveFWD(const int& dutyCyclePerc);
-    void DriveBwd(const int& dutyCyclePerc);
+    void DriveBWD(const int& dutyCyclePerc);
     void Brake();
+    bool getStatusIN1();
+    bool getStatusIN2();
+    int getDutyCycle();
+
 };
 
 };

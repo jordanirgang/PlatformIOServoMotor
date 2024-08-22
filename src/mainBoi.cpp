@@ -41,7 +41,7 @@ void loop() {
   motorDriver.Brake();
   delay(1000);
 
-  motorDriver.DriveBwd(80);
+  motorDriver.DriveBWD(80);
   delay(1000);
 
   motorDriver.Brake();

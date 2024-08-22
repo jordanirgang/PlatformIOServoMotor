@@ -28,5 +28,23 @@ void CustomArduino::L289n::SetDir(const bool &direction)
 void CustomArduino::L289n::SetSpeed(const int &dutyCyclePerc)
 {
     Generic::L298n::SetSpeed(dutyCyclePerc);
-    analogWrite(this->pwmControll.pin, this->pwmControll.value);
+    if(dutyCyclePerc == 0 ){
+        //handlebrake
+        digitalWrite(this->in1.pin,this->in1.value);
+        digitalWrite(this->in2.pin,this->in2.value);
+    }else{
+        analogWrite(this->pwmControll.pin, this->pwmControll.value);
+    }
+    
+}
+
+int CustomArduino::L289n::GetIN1PinState()
+{
+    return digitalRead(this->in1.pin);
+
+}
+
+int CustomArduino::L289n::GetIN2PinState()
+{
+    return digitalRead(this->in2.pin);
 }
