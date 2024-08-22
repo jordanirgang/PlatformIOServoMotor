@@ -10,8 +10,9 @@ struct PotentiometerData{
 class Potentiometer
 {
 private:
-    int trimMin = 0;
-    int trimMax = 100;
+    float trimMin = 0;
+    float trimMax = 100;
+
 
 protected:
     PinGroup<bool> gnd;
@@ -19,6 +20,7 @@ protected:
     PinGroup<int> data;  // between 0-4095   
     bool cfgIs3pin;
     int hardwareMax = 100;
+
 
 public:
     Potentiometer(const int &data);

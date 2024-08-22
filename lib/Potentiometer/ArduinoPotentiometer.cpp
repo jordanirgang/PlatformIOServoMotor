@@ -20,5 +20,5 @@ void CustomArduino::Potentiometer::SetUp()
         digitalWrite(this->vcc.pin,this->vcc.value);
     }
     this->hardwareMax = 4095;
-
+    this->tune(0,this->hardwareMax);
 }

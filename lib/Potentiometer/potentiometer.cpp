@@ -43,7 +43,8 @@ void Generic::Potentiometer::tunePercent(const int &minPercent, const int &maxPe
 
 float Generic::Potentiometer::getPercent()
 {
-    float valuePercent = this->readData()/this->hardwareMax;
+
+    //float valuePercent = static_cast<float>(this->data.value)/static_cast<float>(this->hardwareMax);
     //max - min * ratio + min
-    return (this->trimMax-this->trimMin)*valuePercent + this->trimMin;
+    return static_cast<float>(this->data.value)/static_cast<float>(this->trimMax-this->trimMin)*100;
 }
