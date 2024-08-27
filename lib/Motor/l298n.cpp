@@ -32,16 +32,8 @@ void Generic::L298n::SetDir(const bool& direction)
 void Generic::L298n::SetSpeed(const int &dutyCyclePerc)
 {
 
-    if (this->minSpeed == 0 && this->maxSpeed == 100){
-        this->speed = dutyCyclePerc;
-    }else{
-        //scale value down
-        //initial range between 0 and 100
-        //map to min speed and max speed
-        int speedRatio = dutyCyclePerc/100;
-        //(range_1_max)- (range_1_min))* ratio + range_1_min
-        this->speed = (this->maxSpeed - this->minSpeed)*speedRatio+this->minSpeed;
-    }
+    this->speed = dutyCyclePerc;
+    this->pwmControll.value = this->speed;
 
 }
 
@@ -89,3 +81,11 @@ int Generic::L298n::getDutyCycle()
 {
     return this->speed;
 }
+
+void Generic::L298n::setFrequency(const int &freq)
+{
+    this->frequency =  freq;
+
+}
+
+

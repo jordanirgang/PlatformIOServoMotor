@@ -1,5 +1,6 @@
 #pragma once
 #include "pingroup.h"
+#include "motor.h"
 
 #define CLOCKWISE true
 #define COUNTERCLOCKWISE false
@@ -7,17 +8,15 @@
 
 namespace Generic{
 
-class L298n
+class L298n:Motor
 {
 private:
     bool dir;
-    int maxSpeed;
-    int minSpeed;
 protected:
     PinGroup<bool> in1;
     PinGroup<bool> in2;
     PinGroup<float> pwmControll;
-    int speed;
+    int frequency;
    
 public:
     L298n(const int &in1, const int &in2, const int &pwm);
@@ -35,6 +34,7 @@ public:
     bool getStatusIN1();
     bool getStatusIN2();
     int getDutyCycle();
+    void setFrequency(const int& freq);
 
 };
 

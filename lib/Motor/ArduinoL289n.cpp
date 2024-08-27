@@ -13,7 +13,7 @@ void CustomArduino::L289n::SetUp()
     pinMode(this->in1.pin,OUTPUT);
     pinMode(this->in2.pin,OUTPUT);
     pinMode(this->pwmControll.pin,INPUT);
-
+    this->setFrequency(10000);
     //digitalWrite(this->in.pin,this->gnd.value);
     //digitalWrite(this->vcc.pin,this->vcc.value);
 }
@@ -33,7 +33,7 @@ void CustomArduino::L289n::SetSpeed(const int &dutyCyclePerc)
         digitalWrite(this->in1.pin,this->in1.value);
         digitalWrite(this->in2.pin,this->in2.value);
     }else{
-        analogWrite(this->pwmControll.pin, this->pwmControll.value);
+        pwm(this->pwmControll.pin,10000,this->pwmControll.value);
     }
     
 }
