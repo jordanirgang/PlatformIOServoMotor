@@ -23,6 +23,7 @@ protected:
 
 
 public:
+    Potentiometer();
     Potentiometer(const int &data);
     Potentiometer(const int &gnd,const int &vcc, const int &data);
     ~Potentiometer();

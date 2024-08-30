@@ -1,5 +1,10 @@
 #include "potentiometer.h"
 
+Generic::Potentiometer::Potentiometer()
+{
+    
+}
+
 Generic::Potentiometer::Potentiometer(const int &data)
 {
     this->data = {data,0};
@@ -17,6 +22,7 @@ Generic::Potentiometer::Potentiometer(const int &gnd, const int &vcc, const int 
 
 Generic::Potentiometer::~Potentiometer()
 {
+    
 }
 
 void Generic::Potentiometer::UpdateData(int dataIn)

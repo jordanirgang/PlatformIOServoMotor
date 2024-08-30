@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "ArduinoPotentiometer.h"
 #include "ArduinoL289n.h"
+#include "servo.h"
 
 using namespace CustomArduino;
 

@@ -1,6 +1,7 @@
 #include "Arduino.h"
 #include <unity.h>
 #include "ArduinoL289n.h"
+#include "ArduinoPotentiometer.h"
 #include <string> 
 
 
@@ -105,9 +106,9 @@ int runUnityTests(void) {
 
 void setup()
 {
+  delay(2000);
   motorTest.SetUp();
   Serial.begin(9600);
-  delay(2000);
   runUnityTests();
 }
 

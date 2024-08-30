@@ -4,7 +4,7 @@
 
 
 namespace CustomArduino{
-    class L289n : public Generic::L298n,CustomArduino::ArduinoAbstarct{
+    class L289n : public Generic::L298n,public CustomArduino::ArduinoAbstarct{
     public:
         friend class Generic::L298n;
         using Generic::L298n::L298n;

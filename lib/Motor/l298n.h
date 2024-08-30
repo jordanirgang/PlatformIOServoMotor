@@ -8,7 +8,7 @@
 
 namespace Generic{
 
-class L298n:Motor
+class L298n: public Motor
 {
 private:
     bool dir;

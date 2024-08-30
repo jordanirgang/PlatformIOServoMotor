@@ -1,5 +1,6 @@
 #pragma once
 
+namespace Generic{
 class  Motor{
     protected:
         int speed;
@@ -14,3 +15,5 @@ class  Motor{
         virtual void DriveBWD(const int& dutyCyclePerc){}
         virtual void Brake(){}
 };
+};
+
