@@ -11,7 +11,7 @@ extern "C" {
 
 	}
 
-	void BackwardEuler(float *signal, float alpha){
+	void BackwardEuler(float *signal, float alpha, float timestamp){
 
 	}
 
