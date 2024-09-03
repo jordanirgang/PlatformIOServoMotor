@@ -4,7 +4,7 @@ extern "C" {
 	float derivativeHistory =0; 
 
 	void FowardsEuler(float * signal, float timestep){
-
+		integrateHistory  = (integrateHistory + signal*timestep);
 	}
 
 	void LowPassFilter(float *signal, float alpha){
