@@ -21,11 +21,10 @@ else
 	TARGET_EXTENSION=.out
 endif
 
-C_COMPILER=gcc
+C_COMPILER=g++
 ifeq ($(shell uname -s), Darwin)
-C_COMPILER=clang
+C_COMPILER=clang++
 endif
-
 UNITY_ROOT=../unity_src/
 
 CFLAGS=-std=c89
@@ -46,8 +45,8 @@ CFLAGS += -Wold-style-definition
 
 TARGET_BASE1=test1
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
-SRC_FILES1=$(UNITY_ROOT)/src/unity.c test/test_control.cpp
-INC_DIRS=-Isrc -I$(UNITY_ROOT)/src
+SRC_FILES1=$(UNITY_ROOT)/src/unity.c test/test_control.cpp src/productionCode/controller.cpp
+INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -Isrc -I src/productionCode
 SYMBOLS=
 
 all: clean default
