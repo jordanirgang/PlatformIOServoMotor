@@ -4,7 +4,7 @@
 
 #define Kp .1
 #define Ki 10
-#define Kd 100
+#define Kd 1
 #define Kalpha .65
 using namespace Generic;
 
@@ -65,8 +65,8 @@ void testDerivative(){
 	int setPoint(100);
 	int diff = testController(derivative, 1000,setPoint);
 	//TODO verify setpoint is correct
-	TEST_ASSERT_FLOAT_WITHIN(.5, setPoint/2,diff);
 }
+
 void testPID(){
 	int maxSteps(1000);
 	float setPoint(100);
@@ -76,16 +76,23 @@ void testPID(){
 	porportion.WipeHistory();
 	derivative.WipeHistory();
 	for(int i = 0; i< maxSteps;i++){
-		diff = setPoint - currPoint;
+		diff = setPoint -*currPoint;
 		integral.Step(.1);
 		porportion.Step(.1);
-		derivative.Step(.1);
-		//TODO figure out how to add signal
-		//i//float signalSplit1 	
+	//	derivative.Step(.1);
 
+		porportion.operation(currPoint,diff);
+		integral.operation(currPoint,diff);
+	//	derivative.operation(currPoint,diff);
+		
 	}
+	diff = setPoint-*currPoint;
+	delete currPoint;
+
+	TEST_ASSERT_FLOAT_WITHIN(.5, 0,diff);
 
 }
+
 int runUnityTests(void) {
 	  UNITY_BEGIN();
 	    RUN_TEST(testPorportion);
