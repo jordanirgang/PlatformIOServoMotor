@@ -4,7 +4,8 @@
 
 #define Kp .1
 #define Ki 10
-#define Kd 10
+#define Kd 100
+#define Kalpha .65
 using namespace Generic;
 
 
@@ -33,9 +34,9 @@ void tearDown(){
  */
 Porportion porportion(Kp);
 FowardEuler integral(Ki);
+BackwardEuler derivative(Kd,Kalpha);
 
-void testController(ErrorModifier &control, const int & maxSteps){
-	float setPoint(100);
+float testController(ErrorModifier &control, const int & maxSteps,const float & setPoint){
 	float * currPoint = new float(0);
 	float diff =  *currPoint-setPoint;
 	TEST_ASSERT_EQUAL(setPoint,- diff);
@@ -46,26 +47,31 @@ void testController(ErrorModifier &control, const int & maxSteps){
 		control.Step(.1); 
 		control.operation(currPoint,diff);
 	}
-	bool isFound = (diff) <= .5 && (diff) >= - .5;
 	delete currPoint;
 	//debug only, comment out
-	TEST_ASSERT_FLOAT_WITHIN(.5, 0, diff);
-
-	TEST_ASSERT_TRUE(isFound);
+	return diff;
 
 }
 void testPorportion(){
-	testController(porportion,1000);
+	int diff =testController(porportion,1000,100);
+	TEST_ASSERT_FLOAT_WITHIN(.5, 0, diff);
 }
 
 void testIntegral(){
-	testController( integral, 1000);
+	int diff = testController( integral, 1000,100);
+	TEST_ASSERT_FLOAT_WITHIN(.5, 0, diff);
 }
-
+void testDerivative(){
+	int setPoint(100);
+	int diff = testController(derivative, 1000,setPoint);
+	//TODO verify setpoint is correct
+	TEST_ASSERT_FLOAT_WITHIN(.5, setPoint/2,diff);
+}
 int runUnityTests(void) {
 	  UNITY_BEGIN();
 	    RUN_TEST(testPorportion);
 	    RUN_TEST(testIntegral);
+	    RUN_TEST(testDerivative);
 	      return UNITY_END();
 }
 
