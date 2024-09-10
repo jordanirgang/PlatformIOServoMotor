@@ -1,10 +1,13 @@
-#include <unity.h>
-void setup(){
+#include "unity.h"
+void setUp(){
 
 }
 
-void teardown(){
+void tearDown(){
 
+}
+void get_setpoint_diff(){
+	TEST_ASSERT_EQUAL(1,1);
 }
 
 int runUnityTests(void) {
