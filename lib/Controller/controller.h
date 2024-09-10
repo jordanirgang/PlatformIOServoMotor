@@ -15,6 +15,7 @@ namespace Generic{
             void UpdateError(float & error);
             float GetHistory();
 	    void Step(float timeStep);
+	    void WipeHistory();
     };
 
     class Porportion: public ErrorModifier{

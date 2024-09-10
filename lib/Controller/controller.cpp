@@ -20,6 +20,10 @@ void Generic::ErrorModifier::Step(float timeStep){
 	this->timeStep = timeStep;
 }
 
+void Generic::ErrorModifier::WipeHistory(){
+	this->history = 0;
+}
+
 
 void Generic::Porportion::operation(float*signalOut,float & error){
     float update(this->k * error * this->timeStep);
