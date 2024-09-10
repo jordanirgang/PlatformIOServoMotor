@@ -1,7 +1,5 @@
 #pragma once
 
-float time_step(0);
-
 
 namespace Generic{
     class ErrorModifier{
@@ -10,11 +8,13 @@ namespace Generic{
         protected:
             float k;
             float history;
+	    float timeStep;
         public:
             ErrorModifier(const float & gain);
             virtual void operation(float*signalOut,float & error){}
             void UpdateError(float & error);
             float GetHistory();
+	    void Step(float & timeStep);
     };
 
     class Porportion: public ErrorModifier{
