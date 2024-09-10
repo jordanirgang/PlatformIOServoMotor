@@ -16,7 +16,7 @@ float Generic::ErrorModifier::GetHistory()
 {
     return this->history;
 }
-void Generic::ErrorModifier::Step(float& timeStep){
+void Generic::ErrorModifier::Step(float timeStep){
 	this->timeStep = timeStep;
 }
 

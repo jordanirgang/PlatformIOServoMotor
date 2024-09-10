@@ -14,7 +14,7 @@ namespace Generic{
             virtual void operation(float*signalOut,float & error){}
             void UpdateError(float & error);
             float GetHistory();
-	    void Step(float & timeStep);
+	    void Step(float timeStep);
     };
 
     class Porportion: public ErrorModifier{
