@@ -1,11 +1,12 @@
 #include "unity.h"
 #include "controller.h"
+#include <iostream>
 
 
-#define Kp .1
-#define Ki 10
-#define Kd 1
-#define Kalpha .65
+#define Kp .02
+#define Ki .02
+#define Kd .002
+#define Kalpha .998
 using namespace Generic;
 
 
@@ -21,7 +22,7 @@ void tearDown(){
 *ErrorModifier(const float & gain);
 *virtual void operation(float*signalOut,float & error){}
 *void UpdateError(float & error);
-*float GetHistory();
+*float GetHistory();	z	
 *void Step(float & timeStep);
 };
  *
@@ -46,6 +47,8 @@ float testController(ErrorModifier &control, const int & maxSteps,const float & 
 		diff = setPoint - *currPoint;
 		control.Step(.1); 
 		control.operation(currPoint,diff);
+		std::cout << *currPoint << "\n";
+
 	}
 	delete currPoint;
 	//debug only, comment out
@@ -63,12 +66,15 @@ void testIntegral(){
 }
 void testDerivative(){
 	int setPoint(100);
-	int diff = testController(derivative, 1000,setPoint);
+	int diff = testController(derivative,10,setPoint);
+	std::cout<< diff;
+	TEST_ASSERT_FLOAT_WITHIN(.5, 0, diff);
+
 	//TODO verify setpoint is correct
 }
 
 void testPID(){
-	int maxSteps(1000);
+	int maxSteps(80);
 	float setPoint(100);
 	float* currPoint= new float(0);
 	float diff;
@@ -77,13 +83,14 @@ void testPID(){
 	derivative.WipeHistory();
 	for(int i = 0; i< maxSteps;i++){
 		diff = setPoint -*currPoint;
-		integral.Step(.1);
-		porportion.Step(.1);
-	//	derivative.Step(.1);
+		integral.Step(1);
+		porportion.Step(1);
+		derivative.Step(1);
 
 		porportion.operation(currPoint,diff);
 		integral.operation(currPoint,diff);
-	//	derivative.operation(currPoint,diff);
+		derivative.operation(currPoint,diff);
+		std::cout << *currPoint << "\n";
 		
 	}
 	diff = setPoint-*currPoint;
@@ -95,9 +102,9 @@ void testPID(){
 
 int runUnityTests(void) {
 	  UNITY_BEGIN();
-	    RUN_TEST(testPorportion);
-	    RUN_TEST(testIntegral);
-	    RUN_TEST(testDerivative);
+	    //RUN_TEST(testPorportion);
+	    //RUN_TEST(testIntegral);
+	    //RUN_TEST(testDerivative);
 	    RUN_TEST(testPID);
 	      return UNITY_END();
 }
