@@ -33,7 +33,7 @@ void CustomArduino::L289n::SetSpeed(const int &dutyCyclePerc)
         digitalWrite(this->in1.pin,this->in1.value);
         digitalWrite(this->in2.pin,this->in2.value);
     }else{
-        pwm(this->pwmControll.pin,10000,this->pwmControll.value);
+        //pwm(this->pwmControll.pin,10000,this->pwmControll.value);
     }
     
 }
